@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.codigo.biblioteca.domain.Libro;
 import pe.edu.codigo.biblioteca.service.LibroService;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -32,12 +33,12 @@ public class LibroController {
     }
 
     @PostMapping
-    public Libro crear(@RequestBody Libro libro) {
+    public Libro crear(@Valid @RequestBody Libro libro) {
         return libroService.guardar(libro);
     }
 
     @PutMapping("/{id}")
-    public Libro actualizar(@PathVariable Long id, @RequestBody Libro libro) {
+    public Libro actualizar(@PathVariable Long id, @Valid @RequestBody Libro libro) {
         return libroService.actualizar(id, libro);
     }
 
