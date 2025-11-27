@@ -1,4 +1,4 @@
-package pe.edu.codigo.biblioteca.web;
+package pe.edu.codigo.biblioteca.web.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
