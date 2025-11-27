@@ -9,4 +9,5 @@ public interface LibroRepository {
     Libro save(Libro libro);
     void deleteById(Long id);
     List<Libro> search(String term);
+    List<Libro> findByStatus(Boolean disponible);
 }

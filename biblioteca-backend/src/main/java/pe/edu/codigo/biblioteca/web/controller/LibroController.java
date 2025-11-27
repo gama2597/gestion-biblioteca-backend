@@ -27,6 +27,16 @@ public class LibroController {
         return libroService.obtenerTodos();
     }
 
+    @GetMapping("/disponibles")
+    public List<Libro> listarDisponibles() {
+        return libroService.listarDisponibles();
+    }
+
+    @GetMapping("/prestados")
+    public List<Libro> listarPrestados() {
+        return libroService.listarPrestados();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Libro> obtener(@PathVariable Long id) {
         return ResponseEntity.ok(libroService.obtenerPorId(id));
@@ -46,5 +56,15 @@ public class LibroController {
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         libroService.eliminar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/prestar")
+    public ResponseEntity<Libro> prestar(@PathVariable Long id) {
+        return ResponseEntity.ok(libroService.prestar(id));
+    }
+
+    @PatchMapping("/{id}/devolver")
+    public ResponseEntity<Libro> devolver(@PathVariable Long id) {
+        return ResponseEntity.ok(libroService.devolver(id));
     }
 }

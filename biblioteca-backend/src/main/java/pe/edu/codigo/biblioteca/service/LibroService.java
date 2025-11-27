@@ -11,4 +11,9 @@ public interface LibroService {
     Libro guardar(Libro libro);
     Libro actualizar(Long id, Libro libro);
     void eliminar(Long id);
+
+    List<Libro> listarDisponibles();
+    List<Libro> listarPrestados();
+    Libro prestar(Long id);
+    Libro devolver(Long id);
 }

@@ -16,4 +16,6 @@ public interface LibroJpaRepository extends JpaRepository<LibroEntity, Long> {
             "LOWER(l.isbn) LIKE LOWER(CONCAT('%', :term, '%')) OR " +
             "CAST(l.anioPublicacion AS string) LIKE CONCAT('%', :term, '%')")
     List<LibroEntity> buscarSensible(@Param("term") String term);
+
+    List<LibroEntity> findByDisponible(Boolean disponible);
 }

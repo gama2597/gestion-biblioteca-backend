@@ -80,4 +80,34 @@ public class LibroServiceImpl implements LibroService {
         obtenerPorId(id);
         libroRepository.deleteById(id);
     }
+
+    @Override
+    public List<Libro> listarDisponibles() {
+        return libroRepository.findByStatus(true);
+    }
+
+    @Override
+    public List<Libro> listarPrestados() {
+        return libroRepository.findByStatus(false);
+    }
+
+    @Override
+    public Libro prestar(Long id) {
+        Libro libro = obtenerPorId(id);
+        if (!Boolean.TRUE.equals(libro.getDisponible())) {
+            throw new RuntimeException("El libro no está disponible para préstamo (ya está prestado).");
+        }
+        libro.setDisponible(false); // Marcar como NO disponible
+        return libroRepository.save(libro);
+    }
+
+    @Override
+    public Libro devolver(Long id) {
+        Libro libro = obtenerPorId(id);
+        if (Boolean.TRUE.equals(libro.getDisponible())) {
+            throw new RuntimeException("El libro ya se encuentra en la biblioteca.");
+        }
+        libro.setDisponible(true); // Marcar como disponible
+        return libroRepository.save(libro);
+    }
 }

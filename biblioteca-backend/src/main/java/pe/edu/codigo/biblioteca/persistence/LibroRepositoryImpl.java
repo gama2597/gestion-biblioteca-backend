@@ -52,4 +52,12 @@ public class LibroRepositoryImpl implements LibroRepository {
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Libro> findByStatus(Boolean disponible) {
+        return jpaRepository.findByDisponible(disponible).stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
 }
